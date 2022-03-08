@@ -6,13 +6,21 @@ Currently the server polling threading is managing the message handling.
 
 
 taskMgr.setupTaskChain('serverChain', numThreads = 1, threadPriority = 1)
+
 server = Server(port, possword)
+
 taskMgr.add(server.listen,'listen',-39,taskChain='serverChain')
+
 taskMgr.add(server.poll,'poll',-40,taskChain='serverChain')
+
 client = Client()
+
 if client.connect(ip,port,password):    
+
             print("connected with id",client.id)
+            
             taskMgr.add(client.poll,'client-poll',-38)
+            
   
 
 ### Implement Call Backs
