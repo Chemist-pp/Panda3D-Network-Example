@@ -6,9 +6,12 @@ Currently the server polling threading is managing the message handling.
 
 
 taskMgr.setupTaskChain('serverChain', numThreads = 1, threadPriority = 1)
+
 server = Server(port, possword)
+
 taskMgr.add(server.listen,'listen',-39,taskChain='serverChain')
 taskMgr.add(server.poll,'poll',-40,taskChain='serverChain')
+
 client = Client()
 
 if client.connect(ip,port,password):    
@@ -22,7 +25,7 @@ if client.connect(ip,port,password):
 
 1.  Add int to Network.NetworkConstants MSG 
 2.  Add key/func to self.handlers: 
-3.  Implement recv function, callbackfnc(conn, DatagramIterator)
+3.  Implement recv function, callbackfnc(conn, DatagramIterator) for server and callbackfnc(DatagramIterator) for client.
 4.  Implement send function to construct datagram for recv
 5.  Send function should start with dgram.addUint8(command)
 
